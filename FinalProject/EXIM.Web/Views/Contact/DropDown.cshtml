@@ -1,0 +1,62 @@
+﻿@model ImportModel
+@{
+    ViewData["Title"] = "DropDown";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+}
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Contact/getGroups",
+                data: "{}",
+                success: function (data) {
+                    var s = '<option value="-1">Please Select a Group</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                    }
+                    $("#groupsDropdown").html(s);
+                }
+            });
+        });
+    </script>
+    <script>
+        $('.js-data-example-ajax').select2({
+            ajax: {
+                url: '/Contact/getGroups',
+                dataType: 'json'
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            }
+        });
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        });
+    </script>
+
+
+}
+
+
+<h1>DropDown</h1>
+
+<form id="myForm">
+    <label for="groupsDropdown"><b>Groups</b></label>
+    <select class="form-control" id="groupsDropdown" name="groupsDropdown"></select>
+</form>
+
+
+
+<br />
+<br />
+<br />
+<br />
+<form id="myForm">
+    <label for="groupsDropdown"><b>Groups</b></label>
+    <select class="js-data-example-ajax select2bs4"></select>
+</form>

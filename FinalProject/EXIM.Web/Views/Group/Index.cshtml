@@ -1,0 +1,119 @@
+﻿@model GroupListModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="/Dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+}
+@section Sidebar{
+    <partial name="_DashboardMenuPartial" />
+}
+
+@section Scripts
+{
+    <script src="/Dashboard/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="/Dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $('#groups').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": "/Group/GetGroupData",
+
+                "columnDefs": [
+                    {
+                        "orderable": false,
+                        "targets": 1,
+                        "render": function (data, type, row) {
+                            return `<button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/Group/Update/${data}'" value='${data}'>
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Edit
+                                            </button>
+                                            <button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/Contact/Import/${data}'" value='${data}'>
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Import
+                                            </button>
+                                            <button type="submit" class="btn btn-info btn-sm" onclick="window.location.href='/Contact/Export/${data}'" value='${data}'>
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                Export
+                                            </button>
+                                            <button type="submit" class="btn btn-danger btn-sm show-bs-modal" href="#" data-id='${data}' value='${data}'>
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Delete
+                                            </button>`;
+                        }
+                    }
+                ]
+
+            });
+
+            $('#groups').on('click', '.show-bs-modal', function (event) {
+                var id = $(this).data("id");
+                var modal = $("#modal-default");
+                modal.find('.modal-body p').text('Are you sure you want to delete this record?')
+                $("#deleteId").val(id);
+                $("#deleteForm").attr("action", "/group/delete")
+                modal.modal('show');
+            });
+
+            $("#deleteButton").click(function () {
+                $("#deleteForm").submit();
+            });
+        });
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Available Groups</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Groups</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row m-3">
+    <a asp-area="#" asp-controller="Group" asp-action="Create" class="text-decoration-none btn btn-info">Create New Group</a>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All Available Groups</h3>
+                </div>
+                <div class="card-body">
+                    <table id="groups" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th style="width:500px">Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <partial name="_DeletePopupPartial" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

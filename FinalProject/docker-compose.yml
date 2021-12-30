@@ -1,0 +1,19 @@
+version: "3"
+services:
+    web:
+        build:
+          context: .
+          dockerfile: EXIM.Web/Dockerfile
+        image: eximweb
+        container_name: web
+        restart: unless-stopped
+        tty: true
+        env_file: 
+            - web.env
+        ports:
+            - "8000:80"
+        volumes:
+            - eximweb-data:/app/Logs
+volumes:
+     eximweb-data: 
+        external: true

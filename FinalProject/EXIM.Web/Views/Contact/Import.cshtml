@@ -1,0 +1,194 @@
+﻿@model ImportModel
+@{
+    ViewData["Title"] = "Import";
+}
+
+@section Sidebar{
+    <partial name="_DashboardMenuPartial" />
+}
+
+@section Styles{
+    <link rel="stylesheet" href="/dashboard/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            $('#btnupload').on('click', function () {
+                var fileExtension = ['xls', 'xlsx'];
+                var filename = $('#fileupload').val();
+                if (filename.length == 0) {
+                    alert("Please select a file.");
+                    return false;
+                }
+                else {
+                    var extension = filename.replace(/^.*\./, '');
+                    if ($.inArray(extension, fileExtension) == -1) {
+                        alert("Please select only excel files.");
+                        return false;
+                    }
+                }
+                var fdata = new FormData();
+                var fileUpload = $("#fileupload").get(0);
+                var files = fileUpload.files;
+                fdata.append(files[0].name, files[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "/Contact/Import",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    data: fdata,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        if (response.length == 0)
+                            alert('Some error occured while uploading');
+                        else {
+                            $('#divPrint').html(response);
+                        }
+                    },
+                    error: function (e) {
+                        $('#divPrint').html(e.responseText);
+                    }
+                });
+            })
+        });
+    </script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Import Contacts</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Contact</a></li>
+                    <li class="breadcrumb-item active">Import</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Upload Excel File</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" asp-controller="Contact"
+                          asp-action="Import" asp-antiforgery="true" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="GroupName" class="col-sm-2 col-form-label">Group Name</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" asp-for="GroupName"
+                                           id="title">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FormFile" class="col-sm-2 col-form-label">Select Excel File</label>
+                                <div class="col-sm-12">
+                                    <input asp-for="FormFile" class="form-control" id="fileupload">
+                                    <span asp-validation-for="FormFile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="button" name="Upload" value="Upload" id="btnupload" class="btn btn-primary" />
+                                    <button type="submit" class="btn btn-info">Done</button>
+                                    <button class="btn btn-info" asp-action="Index" asp-controller="Group">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="row m-4">
+                                <div id="divPrint"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Import Contacts</h3>
+                    </div>
+                    <form class="form-horizontal" method="post" asp-controller="Contact"
+                          asp-action="Create" asp-antiforgery="true">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleSelectRounded0">Select Group</label>
+                                <select class="custom-select rounded-0" id="exampleSelectRounded0" asp-items="">
+                                    <option>School Friends</option>-->
+@*<option>College Friends</option>
+    <option>University Friends</option>*@
+<!--</select>
+                            </div>
+                            <div class="form-contact row">
+                                <label class="col-sm-2 col-form-label">Import</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose a Excel Sheet</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Upload</button>
+                            <a asp-action="Index" asp-controller="Contact"
+                               class="btn btn-default float-right">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+
+@section Scripts{
+    <script src="/dashboard/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+        }
+    </script>
+
+}

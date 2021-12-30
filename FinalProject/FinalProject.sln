@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIM.Web", "EXIM.Web\EXIM.Web.csproj", "{9AC951FD-4BB2-4104-854F-71F6DFE59346}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIM.Data", "EXIM.Data\EXIM.Data.csproj", "{82FEBD9B-1493-4C26-ADBF-0EC58D389A9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIM.Common", "EXIM.Common\EXIM.Common.csproj", "{BCBEE873-4170-4541-B61D-8746400E3470}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIM.Membership", "EXIM.Membership\EXIM.Membership.csproj", "{CD11EB7B-C1CE-4BFA-9EF4-F79E83A34387}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIM.Worker", "EXIM.Worker\EXIM.Worker.csproj", "{5D319DE1-0F47-4A74-972C-7E5B35B71F6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EXIM.DataImporter", "EXIM.DataImporter\EXIM.DataImporter.csproj", "{F625AA9F-E905-46A0-9486-4B13A52E8BC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AC951FD-4BB2-4104-854F-71F6DFE59346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC951FD-4BB2-4104-854F-71F6DFE59346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC951FD-4BB2-4104-854F-71F6DFE59346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC951FD-4BB2-4104-854F-71F6DFE59346}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82FEBD9B-1493-4C26-ADBF-0EC58D389A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82FEBD9B-1493-4C26-ADBF-0EC58D389A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82FEBD9B-1493-4C26-ADBF-0EC58D389A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82FEBD9B-1493-4C26-ADBF-0EC58D389A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCBEE873-4170-4541-B61D-8746400E3470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCBEE873-4170-4541-B61D-8746400E3470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCBEE873-4170-4541-B61D-8746400E3470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCBEE873-4170-4541-B61D-8746400E3470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD11EB7B-C1CE-4BFA-9EF4-F79E83A34387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD11EB7B-C1CE-4BFA-9EF4-F79E83A34387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD11EB7B-C1CE-4BFA-9EF4-F79E83A34387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD11EB7B-C1CE-4BFA-9EF4-F79E83A34387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D319DE1-0F47-4A74-972C-7E5B35B71F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D319DE1-0F47-4A74-972C-7E5B35B71F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D319DE1-0F47-4A74-972C-7E5B35B71F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D319DE1-0F47-4A74-972C-7E5B35B71F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F625AA9F-E905-46A0-9486-4B13A52E8BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F625AA9F-E905-46A0-9486-4B13A52E8BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F625AA9F-E905-46A0-9486-4B13A52E8BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F625AA9F-E905-46A0-9486-4B13A52E8BC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CBB9BEA-372F-49B2-B184-490892CAAE1D}
+	EndGlobalSection
+EndGlobal
